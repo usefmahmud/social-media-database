@@ -3,7 +3,7 @@
 
 ## **Tools**
 
-* diagram design: [dbdiagram.io](dbdiagram.io)
+* diagram design: [dbdiagram.io](https://dbdiagram.io)
 * sketches: [Excalidraw](https://excalidraw.com/)
 
 ## **ToDO**
