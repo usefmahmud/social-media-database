@@ -22,15 +22,25 @@ Most of social media platforms are based on different aspects
 
 But what about a new platform which is mainly based on the content?
 
-### *Platform Outlines*
+### *Platform Vision and Outlines:*
 
-* Users are able to create accounts, select their interests and topics, share posts, follow each others, interact (upvote, downvote and feedback, comment, repost) other users' posts, participate and share knowledge in communities, invite other people.
-* Each post has its caption and media, assigned to some tags, and able to be reposted by users.
-* Communities are closed and auto created by the system, in other words each topic has its own community which people are auto particpated in when select their interests.
-* Analyzing to know the ternds tags, top voice users in some topics, users activity streak (sharing posts, comment), posts and comments which have most upvotes and downvotes,
+* Focus on insightful and valuable content, encouraging users to share meaningful posts.
+* Motivate regular participation through features like active-user streaks and badges for top contributors in different topics.
+* Make trending topics and impactful posts easily discoverable.
+* **Like** and **Dislike** options, with required feedback for dislikes, to support a respectful, quality-focused environment.
 
-### *Database Detailed Requirements*
+### *Database Requirements:*
 
+* **User:**
+  * Allowed to create account which has their main info.
+  * Send invitation links for other people.
+  * Follow other users.
+  * Interact with other people posts, repost them, and write his posts.
+  * Chat and send messages to other users.
+* **Post:**
+  * Has a caption, and may has different media (photos and videos).
+  * Should be assigned to some tags.
+  * 
 
 ## **ER Diagram**
 
