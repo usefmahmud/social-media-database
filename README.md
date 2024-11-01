@@ -32,14 +32,25 @@ But what about a new platform which is mainly based on the content?
 ### *Database Requirements:*
 
 * **User:**
+
   * Allowed to create account which has their main info.
   * Send invitation links for other people.
   * Follow other users.
   * Interact with other people posts, repost them, and write his posts.
   * Chat and send messages to other users.
 * **Post:**
+
   * Has a caption, and may has different media (photos and videos).
-  * Should be assigned to some tags.
+  * Should be assigned to one or more tags.
+  * Can be reposted by different users or the auther himself.
+  * Has comments section.
+  * Anlyzing its likes, dislikes, comments, and reposts.
+* **Analysis:**
+
+  * Track user streak of sharing posts.
+  * Top voice uses in some topics.
+  * Trended posts and topics.
+  * Highly liked and disliked posts (with the reasons).
   * 
 
 ## **ER Diagram**
