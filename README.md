@@ -51,6 +51,9 @@ But what about a new platform which is mainly based on the content?
   * Top voice uses in some topics.
   * Trended posts and topics.
   * Highly liked and disliked posts (with the reasons).
+  * Recommended user to follow.
+  * The least active users.
+  * Predicted and actual attendee users to events.
   * 
 
 ## **ER Diagram**
