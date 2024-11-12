@@ -54,7 +54,7 @@ But what about a new platform which is mainly based on the content?
   * Recommended user to follow.
   * The least active users.
   * Predicted and actual attendee users to events.
-  * 
+* Chat:
 
 ## **ER Diagram**
 
