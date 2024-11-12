@@ -4,6 +4,8 @@
 
 * diagram design: [dbdiagram.io](https://dbdiagram.io)
 * sketches: [Excalidraw](https://excalidraw.com/)
+* mock data using [mockaroo](https://www.mockaroo.com/)
+* Python to fix and manipulate the data
 
 ## **ToDO**
 
