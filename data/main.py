@@ -1,37 +1,25 @@
-import csv, random
+import csv
 
-def get_rand(x: int) -> int:
-    r = random.randrange(1,1000)
-    while r == x:
-        r = random.randrange(1,1000)
-    return r
+events_file = open('event.csv', 'r', encoding='utf8')
+events = list(csv.DictReader(events_file))
 
-def get_probability() -> bool:
-    return random.choice([1,1,1,1,1,1,1,1,0,0]) # 80% chance
+attends_file = open('event_attend.csv', 'r', encoding='utf8')
+attends = list(csv.DictReader(attends_file))
 
-# fixing data tables
-users_file = open('./user copy.csv','r', encoding='utf8')
-users = list(csv.DictReader(users_file))
+count = 201 * [0]
+for i in range(1, 201):
+    for attend in attends:
+        if attend['event_id'] == i:
+            count[i] += 1
 
-# 80% invited, 20% not-invited
-freq = [0] * 1000
-for user in users:
-    if get_probability():
-        x = get_rand(int(user['id']))
-        for _ in range(random.choice([random.randint(0,5)])):
-            user['invited_by'] = x
-            
 
-with open('./updated_users.csv', 'w', encoding='utf8', newline='') as output_file:
-    fieldnames = users[0].keys()
-    writer = csv.DictWriter(output_file, fieldnames=fieldnames)
+for attend in attends:
+    if count[int(attend['event_id'])] > int(events[int(attend['event_id'])]['max_attendees']):
+        events[attend['event_id']]['max_attendees'] = count[int(attend['event_id'])]
+
+with open('events_copy.csv', 'w', encoding='utf8') as file:
+    fieldnames = events[0].keys()
+    writer = csv.DictWriter(file, fieldnames=fieldnames)
     writer.writeheader()
-    writer.writerows(users)
-    
-# mx = 0
-# for i in range(len(freq)):
-#     if i:
-#         mx = max(mx,freq[i])
-#         print(f'{i + 1} - {freq[i]}')
-
-# print(f'max: {mx}')
+    writer.writerows(events)
+    print(len(events))
