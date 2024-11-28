@@ -47,19 +47,35 @@ def check_posts():
 
     print(len(invalid_posts))
 
+#check_posts()
 
-check_posts()
+def create_posts_community():
+    posts = pd.read_csv('post_backup.csv')
 
+    community_posts = []
+    i = 1
 
+    for _, post in posts.iterrows():
+        if post['visibility'] == 'community':
+            community_posts.append({
+                'id': i,
+                'post_id': post['post_id'],
+                'community_id': post['community_id']
+            })
+            i += 1
+
+    df_community_posts = pd.DataFrame(community_posts)
+    df_community_posts.to_csv('community_posts2.csv', index=False)
+create_posts_community()
 
 '''
-posts
+posts [done]
 post_tags
-community_posts
+community_posts [done]
 
-post_likes
-post_feedback
-post_comments
+post_likes [done]
+post_feedback [done]
+post_comments [done]
 
 post_repost
 '''
