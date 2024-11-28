@@ -7,8 +7,6 @@
 * mock data using [mockaroo](https://www.mockaroo.com/)
 * Python to fix and manipulate the data
 
-## **ToDO**
-
 ## Requirements
 
 ### *Problem Statement:*
@@ -61,5 +59,6 @@ But what about a new platform which is mainly based on the content?
 ## **ER Diagram**
 
 ## **Relational Model**
-
+![Relational Model](imgs/relational-model.png "Relational Model")
+[show on dbdiagram.io](https://dbdiagram.io/d/university-DBMS-project-672a3b04e9daa85aca67484d)
 ## Conclusion
