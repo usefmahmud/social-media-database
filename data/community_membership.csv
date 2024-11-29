@@ -1,4 +1,4 @@
-id,user_id,community_id,membership_type,joined_at
+id,user_id,community_id,type,joined_at
 1,1,51,admin,2019-09-27 16:49:56
 2,2,14,member,2021-03-27 15:31:51
 3,2,41,member,2024-03-15 08:15:06

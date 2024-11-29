@@ -1,5 +1,6 @@
 import csv
 import pandas as pd
+from datetime import datetime
 
 def create_events():
     events_file = open('event.csv', 'r', encoding='utf8')
@@ -66,8 +67,21 @@ def create_posts_community():
 
     df_community_posts = pd.DataFrame(community_posts)
     df_community_posts.to_csv('community_posts2.csv', index=False)
-create_posts_community()
+# create_posts_community()
 
+def chage_date_format():
+    posts = pd.read_csv('../data/post.csv')
+
+    result = []
+    for _, post in posts.iterrows():
+        old_format = datetime.strptime(post['posted_at'], '%m/%d/%Y %H:%M')
+
+        post['posted_at'] = old_format.strftime("%Y-%m-%d %H:%M:%S")
+        result.append(post)
+
+    new_posts = pd.DataFrame(result)
+    new_posts.to_csv('../data/post1.csv', index=False)
+chage_date_format()
 '''
 posts [done]
 post_tags
