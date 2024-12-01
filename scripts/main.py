@@ -1,4 +1,4 @@
-import csv
+import csv, os
 import pandas as pd
 from datetime import datetime
 
@@ -97,7 +97,42 @@ def recreate_post_feedbacks():
 
     result_export = pd.DataFrame(result)
     result_export.to_csv('../data/post_feedbacks1.csv', index=False)
-recreate_post_feedbacks()
+# recreate_post_feedbacks()
+
+def merge_sql_files():
+    i = 1
+    f = 1
+    with open('../SQL/merged_inserts.sql', 'w', encoding='utf8') as outfile:
+        for file_name in os.listdir('../SQL'):
+            if file_name == 'merged_inserts.sql':
+                continue
+            print(f'file number {f}')
+            f += 1
+            if file_name.endswith('.sql'):
+                file_path = os.path.join('../SQL', file_name)
+                with open(file_path, 'r', encoding='utf8') as infile:
+                    for line in infile:
+                        print(i)
+                        i += 1
+                        outfile.write(line)
+    print(f"Merged SQL files done!")
+# merge_sql_files()
+
+def test():
+    df = pd.read_csv('../data/community_membership.csv')
+
+    rep = []
+    result = []
+    for _, m in df.iterrows():
+        if f'{m["user_id"]}-{m['community_id']}' in rep:
+            print(f'{m["user_id"]}-{m['community_id']}')
+            continue
+        rep.append(f'{m["user_id"]}-{m['community_id']}')
+        result.append(m)
+
+    pd.DataFrame(result).to_csv('../data/community_membership.csv')
+test()
+
 '''
 posts [done]
 post_tags
