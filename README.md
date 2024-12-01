@@ -62,6 +62,14 @@ But what about a new platform which is mainly based on the content?
 ![Relational Model](imgs/relational-model.png "Relational Model")
 <a href="https://dbdiagram.io/d/university-DBMS-project-672a3b04e9daa85aca67484d" target="_blank">show on dbdiagram.io</a>
 
+## **How to run this database on your machine**
+You should first make sure that you have `xampp` and `mysql` are installed. After that clone the project using `git clone https:`
+
+Finally run this command on cmd inside the `xampp\mysql\bin` directory:
+```
+mysql -u root -p < fullpath\to\database_creation.sql
+```
+it will create the database and insert all data within a few seconds.
 ## Queries and Analysis
 1) List interests and its tags
 2) Each user with its info
