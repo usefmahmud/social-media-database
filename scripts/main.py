@@ -119,17 +119,19 @@ def merge_sql_files():
 # merge_sql_files()
 
 def test():
-    df = pd.read_csv('../data/post_comments.csv')
+    df = pd.read_csv('../data/community_membership.csv')
     
     i = 1
     result = []
     for _,m in df.iterrows():
-        m['comment_id'] = i
-        print(i)
-        result.append(m)
-        i += 1
+        result.append({
+            'user_id': m['user_id'],
+            'community_id': m['community_id'],
+            'type': m['type'],
+            'joined_at': m['joined_at']
+        })
 
-    pd.DataFrame(result).to_csv('../data/post_comments.csv', index=False)
+    pd.DataFrame(result).to_csv('../data/community_membership.csv', index=False)
 test()
 
 '''
