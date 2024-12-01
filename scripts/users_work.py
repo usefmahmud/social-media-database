@@ -31,12 +31,12 @@ def fix_commas():
     users = list(csv.DictReader(users_file))
 
     for user in users:
-        user['education'] = user['education'].split(',')[0]
+        user['education'] = user['education'].replace('"', '')
 
-        characters = string.ascii_letters + string.digits
-        password = ''.join(random.choice(characters) for _ in range(random.randint(8, 14)))
-        print(password)
-        user['password'] = password
+        # characters = string.ascii_letters + string.digits
+        # password = ''.join(random.choice(characters) for _ in range(random.randint(8, 14)))
+        # print(password)
+        # user['password'] = password
 
     with open('../data/updated_users.csv', 'w', encoding='utf8', newline='') as output_file:
         fieldnames = users[0].keys()

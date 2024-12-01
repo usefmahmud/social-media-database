@@ -116,7 +116,7 @@ def merge_sql_files():
                         i += 1
                         outfile.write(line)
     print(f"Merged SQL files done!")
-# merge_sql_files()
+merge_sql_files()
 
 def test():
     users_file = open('../data/user.csv', 'r', encoding='utf8')
@@ -135,7 +135,7 @@ def test():
         writer.writerows(users)
         print(len(users))
     
-test()
+# test()
 
 '''
 posts [done]
