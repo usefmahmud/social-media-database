@@ -119,7 +119,7 @@ def merge_sql_files():
 # merge_sql_files()
 
 def test():
-    df = pd.read_csv('../data/event_attend.csv')
+    df = pd.read_csv('../data/user_interests.csv')
 
     rep = []
     result = []
@@ -127,13 +127,13 @@ def test():
     for _, m in df.iterrows():
         print(i)
         i += 1
-        if f'{m["user_id"]}-{m['event_id']}' in rep:
-            print(f'{m["user_id"]}-{m['event_id']}')
+        if f'{m["user_id"]}-{m['interest_id']}' in rep:
+            print(f'{m["user_id"]}-{m['interest_id']}')
             continue
-        rep.append(f'{m["user_id"]}-{m['event_id']}')
+        rep.append(f'{m["user_id"]}-{m['interest_id']}')
         result.append(m)
 
-    pd.DataFrame(result).to_csv('../data/event_attend.csv')
+    pd.DataFrame(result).to_csv('../data/user_interests.csv')
 test()
 
 '''
