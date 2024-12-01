@@ -5,11 +5,11 @@ files = [
     "community_membership",
     "community_posts",
     "community",
-    "event_attend",
+    "event_attends",
     "event",
     'interest',
     'post_comments',
-    'feedbacks',
+    'feedback',
     'post_likes',
     'post_photos',
     'post_tags',
@@ -20,7 +20,7 @@ files = [
     'user_interests',
     'user_messages',
     'user',
-    "post_repost"
+    "post_reposts"
 ]
 
 for f in files:
@@ -43,6 +43,6 @@ for f in files:
 
     final_query = insert + ",\n".join(values_list) + ";"
 
-    with open(f'../sql/{f}.sql', 'w', encoding='utf8') as sqlFile:
+    with open(f'../SQL/{f}.sql', 'w', encoding='utf8') as sqlFile:
         sqlFile.write(final_query)
 

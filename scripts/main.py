@@ -1,4 +1,4 @@
-import csv, os
+import csv, os, string, random
 import pandas as pd
 from datetime import datetime
 
@@ -104,7 +104,7 @@ def merge_sql_files():
     f = 1
     with open('../SQL/merged_inserts.sql', 'w', encoding='utf8') as outfile:
         for file_name in os.listdir('../SQL'):
-            if file_name == 'merged_inserts.sql':
+            if file_name == 'merged_inserts.sql' or file_name == 'database_creation.sql':
                 continue
             print(f'file number {f}')
             f += 1
@@ -119,19 +119,22 @@ def merge_sql_files():
 # merge_sql_files()
 
 def test():
-    df = pd.read_csv('../data/community_membership.csv')
-    
-    i = 1
-    result = []
-    for _,m in df.iterrows():
-        result.append({
-            'user_id': m['user_id'],
-            'community_id': m['community_id'],
-            'type': m['type'],
-            'joined_at': m['joined_at']
-        })
+    users_file = open('../data/user.csv', 'r', encoding='utf8')
+    users = list(csv.DictReader(users_file))
 
-    pd.DataFrame(result).to_csv('../data/community_membership.csv', index=False)
+    result = []
+    for user in users:
+        characters = string.ascii_letters + string.digits
+        password = ''.join(random.choice(characters) for _ in range(random.randint(8, 14)))
+        user['password'] = password
+
+    with open('../data/user1.csv', 'w', encoding='utf8') as file:
+        fieldnames = users[0].keys()
+        writer = csv.DictWriter(file, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(users)
+        print(len(users))
+    
 test()
 
 '''
