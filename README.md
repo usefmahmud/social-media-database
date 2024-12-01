@@ -60,5 +60,12 @@ But what about a new platform which is mainly based on the content?
 
 ## **Relational Model**
 ![Relational Model](imgs/relational-model.png "Relational Model")
-[show on dbdiagram.io](https://dbdiagram.io/d/university-DBMS-project-672a3b04e9daa85aca67484d)
+<a href="https://dbdiagram.io/d/university-DBMS-project-672a3b04e9daa85aca67484d" target="_blank">show on dbdiagram.io</a>
+
+## Queries and Analysis
+1) List interests and its tags
+2) Each user with its info
+3) Active time for publish posts in day time slots
+4) Top voice in each topic
+5) Number of interests for each post
 ## Conclusion
