@@ -16,11 +16,12 @@ files = [
     'post_tags',
     'post_videos',
     'post',
-    'tag',
+    'tags',
     'user_follow',
-    'user_interest',
-    'user_message',
-    'user'
+    'user_interests',
+    'user_messages',
+    'user',
+    "post_repost"
 ]
 
 for f in files:

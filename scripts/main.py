@@ -81,7 +81,23 @@ def chage_date_format():
 
     new_posts = pd.DataFrame(result)
     new_posts.to_csv('../data/post1.csv', index=False)
-chage_date_format()
+# chage_date_format()
+
+def recreate_post_feedbacks():
+    feedbacks = pd.read_csv('../data/feedback.csv')
+    post_feedbacks = pd.read_csv('../data/post_feedbacks.csv')
+    print(feedbacks)
+
+    result = []
+    for _,post_feedback in post_feedbacks.iterrows():
+        result.append({
+            'like_id': post_feedback['like_id'],
+            'feedback': feedbacks.iloc[post_feedback['feedback_id'] - 1]['feedback']
+        })
+
+    result_export = pd.DataFrame(result)
+    result_export.to_csv('../data/post_feedbacks1.csv', index=False)
+recreate_post_feedbacks()
 '''
 posts [done]
 post_tags
