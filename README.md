@@ -57,8 +57,7 @@ But what about a new platform which is mainly based on the content?
 * Chat:
 
 ## **ER Diagram**
-<iframe frameborder="0" style="width:100%;height:863px;" src="https://viewer.diagrams.net/?lightbox=1&target=blank&highlight=0000ff&edit=_blank&nav=1&title=er_diagram.drawio#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1KrBmUcUlMlqtr_obcIY3ed775Ww_ZM9w%26export%3Ddownload"></iframe>
-
+![Label](./er_diagram.drawio.svg)
 ## **Relational Model**
 ![Relational Model](imgs/relational-model.png "Relational Model")
 <a href="https://dbdiagram.io/d/university-DBMS-project-672a3b04e9daa85aca67484d" target="_blank">show on dbdiagram.io</a>
