@@ -89,6 +89,116 @@ on (other.user_id = chat.user_1 or other.user_id = chat.user_2)
 where person.first_name = 'Bobbie'
 	and person.last_name = 'Perrigo';
     
+    
+-- list of users who joined in the last 3 months
+select
+	user.user_id,
+    concat(user.first_name, ' ', user.last_name) as "Full Name",
+    user.created_at as "Joined Date"
+from user
+where created_at >= now() - interval 3 month;
+    
+    
+-- user who didn't post in the last 2 years
+select
+	user.user_id,
+	user.first_name
+from user
+where user.user_id not in (
+	select 
+		post.user_id
+	from post
+    where post.posted_at >= now() - interval 2 year
+);
+
+
+-- most liked posts
+select 
+	post_id, 
+    caption, 
+    (select count(*) from post_likes where post_id = post.post_id) as like_count 
+from post 
+order by like_count desc 
+limit 5;
+
+
+-- posts that contain word "help"
+select 
+	post_id, 
+    caption, 
+    posted_at 
+from post 
+where caption like '%help%';
+
+-- average number of likes on posts
+select 
+	avg(likes_count) as "likes average"
+from (
+    select 
+		count(*) as likes_count 
+    from post_likes 
+    group by post_id
+) as s;
+
+
+-- what is the best hour for posting?
+select 
+	hour(posted_at) as post_hour,
+    count(*) as post_count 
+from post 
+group by post_hour 
+order by post_count desc;
+
+
+-- list countries whith their total interactions number
+select 
+	user.country,
+    (select count(*) from post_likes where user_id = user.user_id) +
+    (select count(*) from post_comments where user_id = user.user_id) +
+    (select count(*) from post_reposts where user_id = user.user_id) as total_interactions 
+from user 
+group by user.country
+order by total_interactions desc;
+
+
+-- events will happen in next month
+select 
+	event_id, 
+    title, 
+    event_date, 
+	location 
+from event
+where event_date >= now() 
+	and event_date <= now() + interval 1 month;
+
+-- events created by "Ronny Bew"
+select 
+	event_id, 
+    title, 
+    event_date
+from event
+where creator_id = (
+	select
+		user_id
+	from user
+    where user.first_name = 'Ronny' 
+		and user.last_name = 'Bew'
+);
+
+
+-- average age of users 
+select
+	round(avg(datediff(now(), birth_date) / 365))
+from user;
+
+-- most frequent age
+select
+	round(datediff(now(), birth_date) / 365) as age,
+    count(user_id) as "Number of Users"
+from user
+group by age
+order by count(user_id) desc;
+
 -- top 10 ternding topics
 select
 	tags.tag,
