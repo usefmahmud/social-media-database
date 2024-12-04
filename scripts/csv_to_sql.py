@@ -1,26 +1,26 @@
 import csv
 
 files = [
-    "chat", 
-    "community_membership",
-    "community_posts",
-    "community",
-    "event_attends",
-    "event",
-    'interest',
+    # "chat", 
+    # "community_membership",
+    # "community_posts",
+    # "community",
+    # "event_attends",
+    # "event",
+    # 'interest',
     'post_comments',
-    'feedback',
-    'post_likes',
-    'post_photos',
-    'post_tags',
-    'post_videos',
-    'post',
-    'tags',
-    'user_follow',
-    'user_interests',
-    'user_messages',
-    'user',
-    "post_reposts"
+    # 'feedback',
+    'post_likes'
+    # 'post_photos',
+    # 'post_tags',
+    # 'post_videos',
+    # 'post',
+    # 'tags',
+    # 'user_follow',
+    # 'user_interests',
+    # 'user_messages',
+    # 'user',
+    # "post_reposts"
 ]
 
 for f in files:
