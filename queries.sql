@@ -138,11 +138,42 @@ where growth > 0
 order by growth desc;
 
 
+-- number of posts per user
+select
+	user.user_id,
+	concat(user.first_name, ' ', user.last_name) as 'Full Name',
+    count(post.post_id)
+from user
+left join post on post.user_id = user.user_id
+group by user.user_id
+order by count(post.post_id);
+
 -- enagement types count per year
+
+-- showing each post details with its engagement
+select
+    user.first_name,
+    post.caption,
+    (case when post.visibility = 'public' then 'public' else community.title end) as visibility,
+    (select count(*) from post_likes where post_likes.post_id = post.post_id) as like_count,
+    (select count(*) from post_comments where post_comments.post_id = post.post_id) as comment_count,
+    (select count(*) from post_reposts where post_reposts.post_id = post.post_id) as repost_count
+from 
+    post
+left join user on post.user_id = user.user_id
+left join community_posts on post.post_id = community_posts.post_id
+left join community on community.community_id = community_posts.community_id
+order by user.first_name,like_count desc, comment_count desc, repost_count desc;
 
 
 -- show users with their engagement score
 
+select
+	post.caption,
+    count(post_reposts.user_id)
+from post
+left join post_reposts on post_reposts.post_id = post.post_id
+where post.caption = 'Behind happen not environmental money cover family.';
 
 -- top voice people in each interest
 
