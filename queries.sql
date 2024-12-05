@@ -9,13 +9,12 @@ on user.user_id = user_messages.from_id or user.user_id = user_messages.to_id
 group by user.user_id
 order by count(user_messages.from_id) desc, count(user_messages.to_id) desc;
 
--- top 5 aquired interests
+-- top 5 interests
 select
 	interest,
     count(user_id)
 from interest
-left join user_interests
-on interest.interest_id = user_interests.interest_id
+left join user_interests on interest.interest_id = user_interests.interest_id
 group by interest
 order by count(user_id) desc
 limit 5;
@@ -197,7 +196,7 @@ select
     count(user_id) as "Number of Users"
 from user
 group by age
-order by count(user_id) desc;
+order by count(user_id);
 
 -- top 10 ternding topics
 select
@@ -205,11 +204,9 @@ select
     interest.interest,
     count(post_tags.post_id) as "Number of Posts"
 from tags
-left join interest
-on interest.interest_id = tags.interest_id
-left join post_tags
-on post_tags.tag_id = tags.tag_id
-group by tags.tag_id
+left join interest on interest.interest_id = tags.interest_id
+left join post_tags on post_tags.tag_id = tags.tag_id
+group by tags.tag_id, tags.tag, interest.interest
 order by count(post_tags.post_id) desc
 limit 10;
 
@@ -258,6 +255,15 @@ left join post on post.user_id = user.user_id
 group by user.user_id
 order by count(post.post_id);
 
+
+-- 
+select user_id, count(*) as post_count 
+from post 
+group by user_id 
+order by post_count desc 
+limit 10;
+
+
 -- enagement types count per year
 
 -- showing each post details with its engagement
@@ -278,12 +284,12 @@ order by user.first_name,like_count desc, comment_count desc, repost_count desc;
 
 -- show users with their engagement score
 
+-- reposts number of the posts that have word "environmental"
 select
-	post.caption,
-    count(post_reposts.user_id)
+    count(post_reposts.user_id) as "Number of Reposts"
 from post
 left join post_reposts on post_reposts.post_id = post.post_id
-where post.caption = 'Behind happen not environmental money cover family.';
+where post.caption like '%environmental%';
 
 -- top voice people in each interest
 
@@ -316,26 +322,26 @@ group by event.event_id, event.max_attendees
 having count(event_attends.user_id) > event.max_attendees;
 
 
-
-
-SELECT
-    p1.user_id,
-    u.username,
-    YEAR(p1.posted_at) AS year,
-    WEEK(p1.posted_at, 1) AS week_number,
-    COUNT(*) AS post_count
-FROM
-    social_media_database.post p1
-JOIN
-    social_media_database.user u ON p1.user_id = u.user_id
-GROUP BY
-    p1.user_id, u.username, year, week_number
-HAVING
-    COUNT(*) > 1
-ORDER BY
-    post_count DESC, year, week_number;
-
-
+-- posts with their top negative feedback
+select
+	post.post_id,
+    post.caption,
+    feedback.feedback as "Most Feedback"
+from post
+left join post_likes on post_likes.post_id = post.post_id
+left join feedback on feedback.like_id = post_likes.like_id
+where feedback.feedback = (
+		select 
+			feedback.feedback
+        from feedback
+        join post_likes on feedback.like_id = post_likes.like_id
+        where post_likes.post_id = post.post_id
+        group by feedback.feedback
+        order by count(*) desc 
+        limit 1
+)
+group by post.post_id;
+ 
 
 
 
