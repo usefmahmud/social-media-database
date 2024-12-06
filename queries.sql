@@ -285,7 +285,7 @@ limit 5;
 
 
 
--- 24 - top 10 ternding topics
+-- 24 - Top 10 ternding topics
 select
     tags.tag,
     interest.interest,
@@ -302,7 +302,7 @@ limit 10;
 
 
 
--- 25 - show all users with their followers and following number
+-- 25 - Show all users with their followers and following number
 select
     user.user_id,
     user.first_name,
@@ -327,7 +327,7 @@ order by followers_count desc, following_count desc;
 
 
 
--- 26 - each community, its interest, and number of admins and members
+-- 26 - Displaying each community, its interest, and number of admins and members
 select
     community.title,
     interest.interest,
@@ -343,7 +343,7 @@ order by members desc, admins desc;
 
 
 
--- 27 - showing each post details with its engagement
+-- 27 - Displaying each post's details along with its engagement metrics.
 select
     user.first_name,
     post.caption,
@@ -362,7 +362,7 @@ order by user.first_name,like_count desc, comment_count desc, repost_count desc;
 
 
 
--- 28 tag combinations posts count
+-- 28 Number of posts associated with specific tag combinations.
 select
     t1.tag as tag1,
     t2.tag as tag2,
@@ -379,7 +379,7 @@ group by t1.tag, t2.tag
 order by post_count desc;
 
 
--- 29 - Is there any posts that talks about topics differ from community main topic?
+-- 29 - Are there any posts discussing topics that differ from the community's main focus?
 select
     community.community_id,
     post.post_id,

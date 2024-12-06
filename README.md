@@ -34,19 +34,20 @@ But what about a new platform which is mainly based on the content?
 * **User:**
 
   * Allowed to create account which has their main info.
-  * Send invitation links for other people.
-  * Follow other users.
-  * Interact with other people posts, repost them, and write his posts.
-  * Chat and send messages to other users.
+  * Send invitation for other people.
+  * Follow and chat with different users.
 * **Post:**
-
   * Has a caption, and may has different media (photos and videos).
+  * Store the posting time.
   * Should be assigned to one or more tags.
-  * Can be reposted by different users or the auther himself.
-  * Has comments section.
-  * Anlyzing its likes, dislikes, comments, and reposts.
+  * People are allowed to interact with it by likes, add comments, or reposting.
+* **Event:**
+  * Created by one user and assigned to only one interest.
+  * Has some informations like title, description, location, date, and maximum number of attendees.
+  * Users can choose to attend or just show their interests with the event.
+* **Community:**
+  * 
 * **Analysis:**
-
   * Track user streak of sharing posts.
   * Top voice uses in some topics.
   * Trended posts and topics.
