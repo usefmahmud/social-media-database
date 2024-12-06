@@ -33,29 +33,32 @@ But what about a new platform which is mainly based on the content?
 
 * **User:**
 
-  * Allowed to create account which has their main info.
-  * Send invitation for other people.
-  * Follow and chat with different users.
+  *Users can create accounts with personal information (e.g., name, email, password, profile picture, and education).
+  * Can invite others to join the platform.
+	* Each user must choose interest or more.
+  * Following and chat with each other
 * **Post:**
-  * Has a caption, and may has different media (photos and videos).
-  * Store the posting time.
-  * Should be assigned to one or more tags.
-  * People are allowed to interact with it by likes, add comments, or reposting.
-* **Event:**
-  * Created by one user and assigned to only one interest.
-  * Has some informations like title, description, location, date, and maximum number of attendees.
-  * Users can choose to attend or just show their interests with the event.
+  * Posts must include a caption and can optionally contain media such as photos or videos.
+  * Posting time should be stored for each post.
+  * Posts can be tagged with one or more topics or categories.
+  * Users can interact with posts through likes, dislikes (with required feedback), comments, or reposts.
+* **Event Management:**
+  * Users can create events associated with a specific interest or topic.
+  * Events must have a title, description, location, date, and a maximum number of attendees.
+  * Users can choose to attend events or express interest without committing to attendance.
+
 * **Community:**
-  * 
+  * Communities should allow users to form groups around shared interest.
+  * Users can create, join and participate in discussions within communities.
 * **Analysis:**
-  * Track user streak of sharing posts.
-  * Top voice uses in some topics.
-  * Trended posts and topics.
-  * Highly liked and disliked posts (with the reasons).
-  * Recommended user to follow.
-  * The least active users.
-  * Predicted and actual attendee users to events.
-* Chat:
+  * Track user activity, including post streaks and consistency.
+  * Identify and highlight top contributors (users with high engagement or posts).
+  * Analyze trending topics and posts based on likes, comments, and reposts.
+  * Provide insights into highly liked and disliked posts, including reasons for dislikes.
+  * Recommend users to follow based on shared interests or mutual connections.
+  * Identify the least active users and suggest re-engagement strategies.
+  * Track events to compare predicted versus actual attendee numbers.
+  * Highlight impactful posts and trending discussions on the platform.
 
 ## **ER Diagram**
 ![Label](./imgs/er_diagram.drawio.svg)
