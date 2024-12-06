@@ -39,7 +39,9 @@ where caption like '%help%';
 select
     post_id,
     caption,
-    (select count(*) from post_likes where post_id = post.post_id) as like_count
+    (
+        select count(*) from post_likes where post_id = post.post_id
+    ) as like_count
 from post
 order by like_count desc
 limit 5;
@@ -127,8 +129,14 @@ order by count(b.invited_by) desc;
 -- 12 - each user with number of attending and interested events
 select
     user.first_name,
-    coalesce(sum(case when event_attends.status = 'attend' then 1 else 0 end)) as "Attending",
-    coalesce(sum(case when event_attends.status = 'interested' then 1 else 0 end)) as "Interested"
+    coalesce(
+        sum(case when event_attends.status = 'attend' then 1 else 0 end),
+        0
+    ) as "Attending",
+    coalesce(
+        sum(case when event_attends.status = 'interested' then 1 else 0 end),
+        0
+    ) as "Interested"
 from user
 	left join event_attends
 		on user.user_id = event_attends.user_id
@@ -260,7 +268,7 @@ select
     count(user_id) as "Number of Users"
 from user
 group by age
-order by count(user_id);
+order by count(user_id) desc;
 
 
 
@@ -276,7 +284,7 @@ order by count(like_id) desc;
 -- 23 - top 5 interests for users
 select
     interest,
-    count(user_id)
+    count(user_id) as "Number of Users"
 from interest
          left join user_interests on interest.interest_id = user_interests.interest_id
 group by interest
@@ -296,9 +304,7 @@ from tags
 	left join post_tags 
 		on post_tags.tag_id = tags.tag_id
 group by tags.tag_id, tags.tag, interest.interest
-order by count(post_tags.post_id) desc
-limit 10;
-
+order by count(post_tags.post_id) desc;
 
 
 
@@ -348,17 +354,17 @@ select
     user.first_name,
     post.caption,
     (case when post.visibility = 'public' then 'public' else community.title end) as visibility,
-    (select count(*) from post_likes where post_likes.post_id = post.post_id) as like_count,
-    (select count(*) from post_comments where post_comments.post_id = post.post_id) as comment_count,
-    (select count(*) from post_reposts where post_reposts.post_id = post.post_id) as repost_count
+    (select count(*) from post_likes where post_likes.post_id = post.post_id) as likes,
+    (select count(*) from post_comments where post_comments.post_id = post.post_id) as comments,
+    (select count(*) from post_reposts where post_reposts.post_id = post.post_id) as reposts
 from post
-	left join user 
-		on post.user_id = user.user_id
-	left join community_posts 
-		on post.post_id = community_posts.post_id
-	left join community 
-		on community.community_id = community_posts.community_id
-order by user.first_name,like_count desc, comment_count desc, repost_count desc;
+         left join user
+                   on post.user_id = user.user_id
+         left join community_posts
+                   on post.post_id = community_posts.post_id
+         left join community
+                   on community.community_id = community_posts.community_id
+order by likes desc, comments desc, reposts desc;
 
 
 
@@ -384,16 +390,19 @@ select
     community.community_id,
     post.post_id,
     post.caption,
-    tags.tag as post_tag
+    tags.tag as post_tag,
+    interest.interest
 from post
-	left join post_tags
-		on post.post_id = post_tags.post_id
-	left join tags
-		on post_tags.tag_id = tags.tag_id
-	left join community_posts
-		on post.post_id = community_posts.post_id
-	left join community
-		on community.community_id = community_posts.community_id
+         left join post_tags
+                   on post.post_id = post_tags.post_id
+         left join tags
+                   on post_tags.tag_id = tags.tag_id
+         left join community_posts
+                   on post.post_id = community_posts.post_id
+         left join community
+                   on community.community_id = community_posts.community_id
+         left join interest
+    on interest.interest_id = community.interest_id
 where tags.interest_id != community.interest_id
 group by community.community_id;
 
